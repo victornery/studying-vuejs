@@ -3,3 +3,23 @@
   padding: 0;
   box-sizing: border-box;
 }
+
+body {
+  font-family: 'Lato', sans-serif;
+}
+
+.section {
+  padding: 30px 0;
+  text-align: center;
+  background: #42b883;
+  color: #fff;
+
+  &:nth-child(even) {
+    background: #35495e;
+  }
+}
+
+.title {
+  font-weight: 300;
+  padding-bottom: 20px;
+}

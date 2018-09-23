@@ -7,11 +7,52 @@ html(lang="pt")
     title Document
 
     link(rel="stylesheet", href="dist/css/main.min.css")
+    link(href="https://fonts.googleapis.com/css?family=Lato:300,400,700",rel="stylesheet")
+
   body
     section.section
-      h1 App 1
+      h1.title App 1
       #app
-      
-        #{'{{ message }}'}
+        = "{{ message }}"
 
+    section.section
+      h1.title App 2
+      #app-2
+        span(v-bind:title="message")
+          = "Pare o mouse sobre mim e veja a dica dinamicamente"
+    
+    section.section
+      h1.title App 3
+      #app-3
+        p(v-if="seen") Agora você me viu! ;-P
+    
+    section.section
+      h1.title App 4
+      #app-4
+        ul
+          li(v-for="todo in todos")
+            = "{{ todo.text }}"
 
+    section.section
+      h1.title App 5
+      #app-5
+        p
+          = "{{ message }}"
+        button(v-on:click="reverseMessage") Inverter Mensagem
+    
+    section.section
+      h1.title App 6
+      #app-6
+        p
+          = "{{ message }}"
+        input(type="text",v-model="message")
+
+    section.section
+      h1.title Componentizando
+      #app-7
+        my-nav
+        my-aside
+        my-main
+
+  script(src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js")
+  script(src="dist/js/main.min.js")  

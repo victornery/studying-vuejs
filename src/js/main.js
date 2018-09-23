@@ -36,7 +36,7 @@ let app5 = new Vue({
         message: 'Quinta classe Vue!'
     },
     methods: {
-        reverseMessage: function() {
+        reverseMessage: function () {
             this.message = this.message.split('').reverse().join('');
         }
     }
@@ -47,7 +47,30 @@ let app6 = new Vue({
         message: 'Testando two-way binding!'
     }
 })
+
 /* Iniciando componentização Vue */
-Vue.component('todo-item', {
-    template: '<li>Isso é um item!</li>'
-}); 
+
+Vue.component('my-nav', {
+    template: `<nav>{{ title }}</nav>`,
+    data: () => {
+        return {
+            title: `My beautiful nav!`
+        }
+    }
+});
+
+Vue.component('my-aside', {
+    template: `<aside>My aside!</aside>`
+})
+
+Vue.component('my-main', {
+    template: `<main>Meu componente main <my-section></my-section> </main>`
+});
+
+Vue.component('my-section', {
+    template: `<section>Meu componente my-section!</section>`
+})
+
+let app7 = new Vue({
+    el: '#app-7'
+})

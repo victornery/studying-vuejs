@@ -8,6 +8,8 @@ const pug = require("gulp-pug");
 const autoprefixer = require("autoprefixer");
 const livereload = require('gulp-livereload');
 const vueify = require('gulp-vueify');
+const concat = require('gulp-concat');
+const uglify = require('gulp-uglify');
 const rename = require('gulp-rename');
 
 const path = {
@@ -35,12 +37,13 @@ gulp.task("scss", () => {
     .pipe(livereload());
 });
 
-gulp.task("js", () => {
-  return gulp
-    .src([path.dev + "/js/*.js"])
+gulp.task("js", function () {
+  return gulp.src(path.dev + "/js/main.js")
     .pipe(babel({
       presets: ["es2015"]
     }))
+    .pipe(concat("main.min.js"))
+    .pipe(uglify())
     .pipe(gulp.dest(path.prod + "/dist/js/"))
     .pipe(livereload());
 });
