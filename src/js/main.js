@@ -51,7 +51,13 @@ let app6 = new Vue({
 /* Iniciando componentização Vue */
 
 Vue.component('my-nav', {
-    template: `<nav>{{ title }}</nav>`,
+    props: {
+        message: {
+            type: String,
+            default: `App Title`
+        },
+    },
+    template: `<nav> <button v-on:click="$emit('toggle')">#</button> {{ title }} e {{ message }}</nav>`,
     data: () => {
         return {
             title: `My beautiful nav!`
@@ -60,7 +66,12 @@ Vue.component('my-nav', {
 });
 
 Vue.component('my-aside', {
-    template: `<aside>My aside!</aside>`
+    template: `<aside v-html="title">{{ title }}</aside>`,
+    data: () => {
+        return {
+            title: `My <strong>very beautify</strong> aside!`
+        }
+    }
 })
 
 Vue.component('my-main', {
@@ -68,9 +79,27 @@ Vue.component('my-main', {
 });
 
 Vue.component('my-section', {
-    template: `<section>Meu componente my-section!</section>`
+    template: `<section :style="style">Meu componente my-section!</section>`,
+    data: () => {
+        return {
+            style: {
+                background: `red`
+            }
+        }
+    }
 })
 
 let app7 = new Vue({
-    el: '#app-7'
+    el: '#app-7',
+
+    data: {
+        message: 'teste',
+        open: false
+    },
+
+    methods: {
+        update() {
+            this.open = !this.open;
+        }
+    }
 })

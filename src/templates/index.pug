@@ -49,8 +49,8 @@ html(lang="pt")
 
     section.section
       h1.title Componentizando
-      #app-7
-        my-nav
+      #app-7(v-bind:class="{'open' : open}")
+        my-nav(@:toggle="update",v-bind:message="message")
         my-aside
         my-main
 
