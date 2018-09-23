@@ -41,8 +41,6 @@ gulp.task("js", () => {
     .pipe(babel({
       presets: ["es2015"]
     }))
-    .pipe(concat("main.min.js"))
-    .pipe(uglify())
     .pipe(gulp.dest(path.prod + "/dist/js/"))
     .pipe(livereload());
 });
