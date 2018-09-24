@@ -66,25 +66,32 @@ Vue.component('my-nav', {
 });
 
 Vue.component('my-aside', {
-    template: `<aside v-html="title">{{ title }}</aside>`,
-    data: () => {
-        return {
-            title: `My <strong>very beautify</strong> aside!`
-        }
-    }
+    props: ['message'],
+    template: `<aside v-html="message"></aside>`,
 })
 
 Vue.component('my-main', {
-    template: `<main>Meu componente main <my-section></my-section> </main>`
+    template: `<main>Meu componente main <my-section @input="$emit('input', $event)"></my-section> </main>`
 });
 
 Vue.component('my-section', {
-    template: `<section :style="style">Meu componente my-section!</section>`,
+    template: `
+    <section :style="style">
+        Meu componente my-section! {{ reatividade }}
+
+        <input type="text" v-model="reatividade" placeholder="Teste de Reatividade"></input>
+    </section>`,
     data: () => {
         return {
             style: {
                 background: `red`
-            }
+            },
+            reatividade: ''
+        }
+    },
+    watch: {
+        reatividade() {
+            this.$emit('input', this.reatividade);
         }
     }
 })
