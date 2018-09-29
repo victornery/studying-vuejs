@@ -51,8 +51,8 @@ html(lang="pt")
       h1.title Componentizando
       #app-7(v-bind:class="{'open' : open}")
         my-nav(@:toggle="update",v-bind:message="message")
-        my-aside
-        my-main
+        my-aside(v-bind:message="message")
+        my-main(v-model="message")
 
   script(src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js")
   script(src="dist/js/main.min.js")  
